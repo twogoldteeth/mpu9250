@@ -1,2 +1,1 @@
-Drone program using mpu9250 and mega2560
-and pid ,motor control
+making roll,pitch,yaw with mpu9250 and arduino mega2560
