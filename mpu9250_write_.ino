@@ -476,36 +476,6 @@ void loop()
 //====== Set of useful function to access acceleration. gyroscope, magnetometer, and temperature data
 //===================================================================================================================
 
-void writeFloat(uint16_t addr,float x)
-{
-  union
-  {
-    byte b[4];
-    float f;
-  }data;
-  data.f=x;
-  for(int i=0;i<4;i++)
-  {
-    EEPROM.write(addr+i,data.b[i]);
-  }
-}
-
-float readFloat(uint16_t addr)
-{
-  union
-  {
-    byte b[4];
-    float f;
-  }data;
-  for(int i=0;i<4;i++)
-  {
-    data.b[i]=EEPROM.read(addr+i);
-  }
-  return data.f;
-}
-
-
-
 void getMres()
 {
   switch (Mscale)
@@ -1123,3 +1093,32 @@ void readBytes(uint8_t address, uint8_t subAddress, uint8_t count, uint8_t * des
         dest[i++] = Wire.read(); 
   }         // Put read results in the Rx buffer
 }
+
+void writeFloat(uint16_t addr,float x)
+{
+  union
+  {
+    byte b[4];
+    float f;
+  }data;
+  data.f=x;
+  for(int i=0;i<4;i++)
+  {
+    EEPROM.write(addr+i,data.b[i]);
+  }
+}
+
+float readFloat(uint16_t addr)
+{
+  union
+  {
+    byte b[4];
+    float f;
+  }data;
+  for(int i=0;i<4;i++)
+  {
+    data.b[i]=EEPROM.read(addr+i);
+  }
+  return data.f;
+}
+
